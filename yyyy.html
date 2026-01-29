@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدرسة المشير أحمد إسماعيل الثانويه العسكرية بأسيوط</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a2a3a; /* كحلي عسكري */
+            --secondary: #d32f2f; /* أحمر */
+            --gold: #c5a059; /* ذهبي */
+            --light: #f4f7f6;
+        }
+
+        * { box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { margin: 0; background-color: var(--light); color: #333; line-height: 1.6; }
+
+        /* الهيدر */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .logo { font-size: 1.2rem; font-weight: bold; color: var(--gold); }
+        nav a { color: white; text-decoration: none; margin-right: 15px; font-size: 0.9rem; transition: 0.3s; }
+        nav a:hover { color: var(--secondary); }
+
+        /* قسم الغلاف */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('467181015_530778609722000_1945733729395824057_n.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; max-width: 700px; }
+
+        /* قسم النتيجة والروابط */
+        .result-section {
+            margin-top: -60px;
+            padding: 0 5%;
+            text-align: center;
+        }
+        .result-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+            border-bottom: 4px solid var(--gold);
+        }
+        .links-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .btn-sub {
+            background: var(--primary);
+            color: var(--gold);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 1px solid var(--gold);
+        }
+        .btn-result {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        /* قسم طلاب متفوقين - صف واحد فقط */
+        .top-students { padding: 40px 5%; text-align: center; background: #fff; }
+        .top-students h2 { color: var(--primary); margin-bottom: 20px; }
+        
+        .honor-scroll {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto; /* يسمح بالتحريك لليسار واليمين */
+            padding: 20px 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) transparent;
+        }
+        
+        .honor-scroll img {
+            flex: 0 0 200px; /* عرض ثابت للصورة في الصف */
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* ************************************** */
+        /* قسم الكنترول والمدرسين الجديد */
+        /* ************************************** */
+        .school-staff-section {
+            padding: 60px 5%;
+            text-align: center;
+            background: var(--light);
+        }
+        .school-staff-section h2 {
+            color: var(--primary);
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+        }
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .staff-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .staff-card:hover { transform: translateY(-5px); }
+        .staff-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--secondary);
+        }
+        .staff-card h3 {
+            color: var(--primary);
+            margin: 15px 0 10px;
+            font-size: 1.4rem;
+        }
+        .staff-card p {
+            color: #555;
+            font-size: 1rem;
+            padding-bottom: 15px;
+        }
+        /* ************************************** */
+
+
+        /* قسم معرض الصور */
+        .gallery { padding: 60px 5%; text-align: center; }
+        .gallery h2 { color: var(--primary); margin-bottom: 30px; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* روابط الوزارة */
+        .official-links {
+            background: #eee;
+            padding: 40px 5%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .link-card {
+            background: white; padding: 15px 25px; border-radius: 8px;
+            text-decoration: none; color: var(--primary); font-weight: bold; border: 1px solid #ddd;
+        }
+
+        footer {
+            background: var(--primary); color: white; padding: 40px 5%;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+        }
+        footer h3 { color: var(--gold); }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            header { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">المشير أحمد إسماعيل الثانويه العسكرية </div>
+        <nav>
+            <a href="https://moe.gov.eg/" target="_blank">الوزارة</a>
+            <a href="http://www.assiut.gov.eg/EduUnit/Default.aspx" target="_blank">المديرية</a>
+            <a href="https://www.facebook.com/Almushirassiut/" target="_blank">فيسبوك</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>مدرسة المشير أحمد إسماعيل الثانويه العسكرية</h1>
+        <p>الانضباط - العلم - بناء المستقبل</p>
+    </section>
+
+    <section class="result-section">
+        <div class="result-card">
+            <div class="links-group">
+                <a href="https://study.ekb.eg/" target="_blank" class="btn-sub">المكتبة الإلكترونية</a>
+                <a href="https://moe.gov.eg/" target="_blank" class="btn-sub">صفحة التقييمات</a>
+            </div>
+            <a href="https://script.google.com/macros/s/AKfycbw_ycaVg8_Y57-Z7aDQIniM8cq_vFGdSNjxOIk5LkjhW8_AQxnSX5ltC9DUw1bfK5gR9A/exec" 
+               target="_blank" class="btn-result">اضغط هنا لفتح صفحة النتيجة</a>
+        </div>
+    </section>
+
+    <section class="top-students">
+        <h2>طلاب متفوقين</h2>
+        <div class="honor-scroll">
+            <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/606888945_836767189131553_2342174620318207354_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=9Bxz6IHn7e0Q7kNvwEXlusT&_nc_oc=AdnpyfNvfLLAMLaSUjXeFXRPXMaVOBiVmB1W62to45vs-lv7v8QimC00hJ-n9xNsE5U&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=ZJ4_c0qCkwqBUjuqdwATXg&oh=00_AfqTEdXIEGUmEt3dvmCfSj1uFf3vCJBHZgNbwazPhmuqnw&oe=698165FC" alt="متفوق">
+            <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/606825865_836767335798205_108794911172556117_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=yG57jR_Iso8Q7kNvwFH1ICP&_nc_oc=AdnkEp89rrAqeURrhvb_2YcTAmbZ4KbRa1dCbSJktdBgnZWZLqIXrf_dSuahRMGEupk&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=hFXZkbeajj_ErRG-fPIzyw&oh=00_Afpz2IVMsnT2VTStlz72DN5lcB57G0m6rlKDZVyOEvyuVA&oe=69815EAE" alt="متفوق">
+            <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/608004508_835894309218841_3584153126094399706_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=GPMDqjc9Wy0Q7kNvwFvn9EL&_nc_oc=AdnTdIMMYaQkcZ9PUlIXVoqu4yV_7okNVGCUw7cagEQeojvKesLK_Wwc0k4hUDd-Bn4&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=Ua5fdIgrAjCmBI4zNzz04Q&oh=00_AfppFUcCltqBHGlT4x8gJXC55GcE1C75KSLzH8TzO9P51Q&oe=698165A3" alt="متفوق">
+            <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/605284424_830922806382658_1226906250236843444_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=j0BnQ5uneQIQ7kNvwGliW7u&_nc_oc=Adluqv7Jd5ZPNKsF_cIZQeDxAsi4wT_jJYNdglxr0YEkCVeoRLK670HDNKFwGBUxBGc&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=gpI_avnXwpBRfFrqO5v5eA&oh=00_AfpAiVi3xQrsj8jOmD2ywSahWtja_Q8-v7sGeDLvAXQ8ag&oe=69816740" alt="متفوق">
+            <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/599479098_827178240090448_7854391733084047813_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_ohc=lMwpfe45QDcQ7kNvwEh3nHX&_nc_oc=AdmhRcGNl4VMpb3OQXXd09L88dftXLbQIodFMWAS_XFKj236IzLYBwoOfUdI1d_1R6c&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=14R9kK7kkuhvkYBeRrR25w&oh=00_AfoEWX5LuH5kuCifHMTC7VMS7qQwgbJQU-68_fPabGftkg&oe=69815E72" alt="متفوق">
+            <img src="student6.jpg" alt="متفوق"> 
+            <img src="student5.jpg" alt="متفوق">
+            <img src="student5.jpg" alt="متفوق">
+            <img src="student5.jpg" alt="متفوق"> 
+            <img src="student5.jpg" alt="متفوق"> 
+             <img src="student5.jpg" alt="متفوق">
+        </div>
+    </section>
+
+    <section class="school-staff-section">
+        <h2>إدارة المدرسة وهيئة التدريس</h2>
+        <div class="staff-grid">
+            <div class="staff-card">
+                <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/619663035_859222146886057_993844387305134632_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=x9EVIL9X5F8Q7kNvwEPZ06R&_nc_oc=AdnEedGopkqbjWv7ojOxGrXcZK3OSFd6vZZoMqwW_k96yRmSPSmKyX3L_IsPFWIkDfY&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=vdcvQ2r6kC-FeAMu4cdVYw&oh=00_Afo1TdDGxWehSTIEiEfl_7n8rEnKnKrfPV3PxRyIU5gjjQ&oe=698168BC" alt="كنترول المدرسة">
+                <h3>كنترول المدرسة</h3>
+                <p>فريق العمل المتميز بكنترول المدرسة يضمن سير العملية الامتحانية بدقة ونزاهة.</p>
+            </div>
+            <div class="staff-card">
+                <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/607103639_837005109107761_5662560902130468850_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=MFMXa_tOeqEQ7kNvwGe8fOQ&_nc_oc=AdnOwSKXstQnZ_8Pb_Hs5Z-q1FDSvWmflnkBHthxZ5FkfE2MMNK35d5ye9_ev3lOakE&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=kCHGiJT8yWyo-qFZbeUQ_A&oh=00_AfqTD0olmQNusG8Olb2PKQBgbs7DtvPt5zwW5E11k46iig&oe=69818064" alt="مدرسي المدرسة">
+                <h3>مدرسي المدرسة</h3>
+                <p>نخبة من أفضل المعلمين ملتزمون بتوفير تعليم عالي الجودة لطلابنا.</p>
+            </div>
+        </div>
+    </section>
+    <section class="gallery">
+        <h2>معرض الأنشطة الطلابية</h2>
+        <div class="grid">
+ <div class="honor-scroll">
+            <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/611178714_841112222030383_2364068623708912177_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ePbG5Xn80YoQ7kNvwF7m186&_nc_oc=Adnqwd8lWIGzLpseq79Kx6ivBiH1EDFEcGIlDnchss413JL6z5HGQR--ZSGzb3ycs1Q&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=5_eEEZ7bNg2UV_PpEdvK0Q&oh=00_Afru1VyrO9BdhF5ai32iGw6TtFKVWChYWqUDPdgkL_TGeQ&oe=698168B6" alt="نشاط 1">
+            <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/622874155_860748706733401_5433897000898390678_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=fRrXwsFrol0Q7kNvwG5d4ae&_nc_oc=AdlJ3PeHsmvRmxfLUJ2kLY_xeqS0gF6A66O3hPpq7hYW9CCHm1dIgFvHQRnMB7cVo7A&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=tghGPFLgaWFL1J56r0FJNg&oh=00_AfrOVQXQJM1uMEV1P8T1ltNo5dtEfx0mqDHntrBZjB0OvQ&oe=69818A69" alt="نشاط 2">
+            <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/605332197_831280723013533_7437557304111066845_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=poUXHNus79EQ7kNvwECU5w9&_nc_oc=Adm2_aR5SantcrEcf0-oOxeZ-pKZXbU9D5SXphCo42-2PjwtgryipAl3aMhTM2u-skw&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=yyU8g0wgVjZhhSPuLd-k8g&oh=00_Afqu7JQbBhfgD5-8EFwFEv-6OIFHFU1pT_4bcdSFBsIdmg&oe=698179C8" alt="نشاط 3">
+            <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/605400328_833558182785787_2503520294894821173_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=5FGqijt04MwQ7kNvwGpGJM0&_nc_oc=Admsyxd1UHw2NWM5BzSsns_L0czgt5np2u0D_FZi8J2mlG-dEZMIQ2e5mq5S1HkXOrI&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=VFnqwA4lRgLBlbcYv0-nWA&oh=00_AfpZfQy34ZYrdeW9E1eiYPiEY40wyWer-I-O3wN-NtMWFQ&oe=69817565" alt="نشاط 2">
+             <img src="https://scontent.fcai19-11.fna.fbcdn.net/v/t39.30808-6/600299284_827013440106928_3252991637004730958_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=IzgQF-LyY38Q7kNvwHASbes&_nc_oc=Admec7JboNGaHVDN5RrlC3Th-1Ur9R-OqhfpXOmzhgbLOv5OnZeomk5rIyu5WGXWwcg&_nc_zt=23&_nc_ht=scontent.fcai19-11.fna&_nc_gid=Qa90eH60TwplzDxfb36AKw&oh=00_AfpPiUrZ6bbK6wG7sILVwAQqquWFXZGb0bQO-Q1O46I21g&oe=6981553C" alt="نشاط 2">
+               <img src="622874155_860748706733401_5433897000898390678_n.jpg" alt="نشاط 2">
+<img src="622874155_860748706733401_5433897000898390678_n.jpg" alt="نشاط 2">
+<img src="622874155_860748706733401_5433897000898390678_n.jpg" alt="نشاط 2">
+        </div>
+    </section>
+
+    <div class="official-links">
+        <a href="https://moe.gov.eg/" target="_blank" class="link-card">موقع وزارة التربية والتعليم</a>
+        <a href="https://emis.gov.eg/" target="_blank" class="link-card">مركز معلومات الوزارة</a>
+        <a href="http://www.assiut.gov.eg/" target="_blank" class="link-card">بوابة محافظة أسيوط</a>
+    </div>
+
+    <footer>
+        <div>
+            <h3>عن المدرسة</h3>
+            <p>مدرسة عسكرية ثانوية رائدة في محافظة أسيوط.</p>
+        </div>
+        <div>
+            <h3>تواصل معنا</h3>
+            <p>📍 أسيوط - حي الحمراء</p>
+            <p>📞 0882332479</p>
+        </div>
+        <div class="footer-map">
+            <h3>موقعنا</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.7745780181154!2d31.1895689!3d27.1856124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14450bd901fe79d7%3A0x6aeefee55e754f33!2z2YXYr9ix2LPZhyDYp9mE2YXYtNmK2LEg2KfYrdmF2K8g2KfYs9mF2KfYudmK2YQg2KfZhdir2KfZhtmI2YrYqSBiYXNzaXV0!5e0!3m2!1sar!2seg!4v1700000000000" style="width:100%; border:none; height:150px;"></iframe>
+        </div>
+    </footer>
+
+</body>
+</html>
